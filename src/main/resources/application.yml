@@ -1,3 +1,9 @@
 spring:
   application:
     name: ai-generate
+
+aliyun:
+  apiKey: sk-f1b7304ab25248ed937df6c2a64c857d
+  dashscope:
+    video-synthesis-url: https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis
+    query-task-url: https://dashscope.aliyuncs.com/api/v1/tasks   # ? ??? /
