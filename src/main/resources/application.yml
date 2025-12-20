@@ -1,3 +1,9 @@
 spring:
   application:
     name: ai-generate
+
+
+api:
+  key: sk-f1b7304ab25248ed937df6c2a64c857d
+
+region: china
