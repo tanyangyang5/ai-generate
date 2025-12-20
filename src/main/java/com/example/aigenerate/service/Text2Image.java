@@ -18,17 +18,17 @@ public class Text2Image {
 
     // 新加坡和北京地域的API Key不同。获取API Key：https://help.aliyun.com/zh/model-studio/get-api-key
     // 若没有配置环境变量，请用百炼API Key将下行替换为：static String apiKey = "sk-xxx"
-    static String apiKey = System.getenv("DASHSCOPE_API_KEY");
+    static String apiKey = "sk-f1b7304ab25248ed937df6c2a64c857d";
 
     public static void basicCall() throws ApiException, NoApiKeyException {
-        String prompt = "一副典雅庄重的对联悬挂于厅堂之中，房间是个安静古典的中式布置，桌子上放着一些青花瓷，对联上左书“义本生知人机同道善思新”，右书“通云赋智乾坤启数高志远”， 横批“智启通义”，字体飘逸，在中间挂着一幅中国风的画作，内容是岳阳楼。";
+        String prompt = "大明远征蒙古的壮阔场面";
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("prompt_extend", true);
         parameters.put("watermark", false);
         ImageSynthesisParam param =
                 ImageSynthesisParam.builder()
                         .apiKey(apiKey)
-                        .model("qwen-image-plus")
+                        .model("wan2.2-t2i-flash")
                         .prompt(prompt)
                         .n(1)
                         .size("1328*1328")
