@@ -18,19 +18,21 @@ import java.util.Map;
 @Service
 public class ImageGenerationService {
 
-    @Value("${api.key}")
+    @Value("${aliyun.api.key}")
     private String apiKey;
 
     @Value("${region}")
     private String region;
 
+    @Value("${aliyun.dashscope.image-synthesis-url}")
+    private String imageSynthesisUrl;
+
     public String generateImage(ImageGenerationRequest request) {
-        // 设置区域URL (北京/新加坡)
-        String baseUrl = "https://dashscope.aliyuncs.com/api/v1";
+
         if ("singapore".equalsIgnoreCase(region)) {
-            baseUrl = "https://dashscope-intl.aliyuncs.com/api/v1";
+            imageSynthesisUrl = "https://dashscope-intl.aliyuncs.com/api/v1";
         }
-        Constants.baseHttpApiUrl = baseUrl;
+        Constants.baseHttpApiUrl = imageSynthesisUrl;
 
         // 配置参数
         Map<String, Object> parameters = new HashMap<>();
