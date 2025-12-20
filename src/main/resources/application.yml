@@ -8,5 +8,6 @@ aliyun:
     video-synthesis-url: https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis
     image-synthesis-url: https://dashscope.aliyuncs.com/api/v1
     query-task-url: https://dashscope.aliyuncs.com/api/v1/tasks
+    image-video-url: https://dashscope.aliyuncs.com/api/v1/services/aigc/image2video/video-synthesis
 
 region: china

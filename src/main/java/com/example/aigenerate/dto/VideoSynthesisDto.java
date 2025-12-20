@@ -19,6 +19,8 @@ public class VideoSynthesisDto {
         public static class Input {
             private String prompt;
             private String imgUrl; // → img_url
+            private String firstFrameUrl;
+            private String lastFrameUrl;
         }
 
         @Data

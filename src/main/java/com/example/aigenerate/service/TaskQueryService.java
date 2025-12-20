@@ -39,8 +39,10 @@ public class TaskQueryService {
 
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
+                assert response.body() != null;
                 throw new IOException("Query failed: " + response.code() + " - " + response.body().string());
             }
+            assert response.body() != null;
             return objectMapper.readValue(response.body().string(), VideoSynthesisDto.Response.class);
         }
     }
