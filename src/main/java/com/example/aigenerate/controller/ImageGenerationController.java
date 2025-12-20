@@ -1,7 +1,7 @@
-package com.example.aigenerate.image.controller;
+package com.example.aigenerate.controller;
 
-import com.example.aigenerate.image.dto.ImageGenerationRequest;
-import com.example.aigenerate.image.service.ImageGenerationService;
+import com.example.aigenerate.dto.ImageGenerationRequest;
+import com.example.aigenerate.service.ImageGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

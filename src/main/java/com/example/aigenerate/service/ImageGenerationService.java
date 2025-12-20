@@ -1,4 +1,4 @@
-package com.example.aigenerate.image.service;
+package com.example.aigenerate.service;
 
 import com.alibaba.dashscope.aigc.imagesynthesis.ImageSynthesis;
 import com.alibaba.dashscope.aigc.imagesynthesis.ImageSynthesisOutput;
@@ -7,7 +7,8 @@ import com.alibaba.dashscope.aigc.imagesynthesis.ImageSynthesisResult;
 import com.alibaba.dashscope.exception.ApiException;
 import com.alibaba.dashscope.exception.NoApiKeyException;
 import com.alibaba.dashscope.utils.Constants;
-import com.example.aigenerate.image.dto.ImageGenerationRequest;
+import com.example.aigenerate.dto.ImageGenerationRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class ImageGenerationService {
 
-    @Value("${aliyun.api.key}")
+    @Value("${aliyun.apiKey}")
     private String apiKey;
 
     @Value("${region}")
@@ -52,6 +54,7 @@ public class ImageGenerationService {
         // 调用模型
         ImageSynthesis imageSynthesis = new ImageSynthesis();
         try {
+            log.info( "1111" );
             ImageSynthesisResult result = imageSynthesis.call(param);
 
             ImageSynthesisOutput output = result.getOutput();
