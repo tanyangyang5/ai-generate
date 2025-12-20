@@ -14,7 +14,6 @@ target/
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/.gitignore
-src/main/java
 *.iws
 *.iml
 *.ipr
