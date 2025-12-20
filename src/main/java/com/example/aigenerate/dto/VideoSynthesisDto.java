@@ -1,4 +1,5 @@
 package com.example.aigenerate.dto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import tools.jackson.databind.PropertyNamingStrategies;
 import tools.jackson.databind.annotation.JsonNaming;
@@ -10,16 +11,23 @@ public class VideoSynthesisDto {
     @Data
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     public static class Request {
-        private String model = "wan2.5-i2v-preview";
+        @Schema(description = "AI 模型名称", example = "wan2.5-i2v-preview", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
+        private String model;
+        @Schema(description = "输入参数", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
         private Input input;
+        @Schema(description = "视频生成设置", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
         private Parameters parameters;
 
         @Data
         @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
         public static class Input {
+            @Schema(description = "prompt", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
             private String prompt;
-            private String imgUrl; // → img_url
+            @Schema(description = "imgUrl 根据首帧生成时用这个参数", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
+            private String imgUrl;
+            @Schema(description = "firstFrameUrl 根据首尾帧生成时用这个参数", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
             private String firstFrameUrl;
+            @Schema(description = "lastFrameUrl 根据首尾帧生成时用这个参数", example = "", requiredMode = Schema.RequiredMode.REQUIRED)// 模型名称 (wan2.2-t2i-flash)
             private String lastFrameUrl;
         }
 
