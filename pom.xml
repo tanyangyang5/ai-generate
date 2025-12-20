@@ -58,11 +58,10 @@
             <artifactId>okhttp</artifactId>
             <version>4.12.0</version> <!-- 最新稳定版 -->
         </dependency>
-        <!-- Springdoc OpenAPI UI - 自动生成 API 文档 + Swagger UI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>1.8.0</version> <!-- ✅ 正确版本 -->
+            <version>2.3.0</version>
         </dependency>
     </dependencies>
 
