@@ -1,7 +1,9 @@
 package com.example.aigenerate.service;
 
 import com.example.aigenerate.dto.MultiImageVideoSynthesisRequest;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class MultiImageVideoSynthesisService {
     private static final String API_URL = "https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis";
     private static final String MODEL = "wanx2.1-vace-plus";
@@ -75,4 +78,68 @@ public class MultiImageVideoSynthesisService {
             return response.body() != null ? response.body().string() : "{}";
         }
     }
+
+
+
+
+
+    private static final int MAX_RETRIES = 30;
+    private static final long POLL_INTERVAL = 10000;
+
+    public String generateVideoWithWait(MultiImageVideoSynthesisRequest request) throws IOException, InterruptedException {
+        String submitResponse = submitTask(request);
+        String taskId = parseTaskId(submitResponse);
+
+        log.info("Task ID: {}", taskId);
+
+        for (int i = 0; i < MAX_RETRIES; i++) {
+            String statusResponse = queryTaskStatus(taskId);
+            String status = parseTaskStatus(statusResponse);
+
+            log.info("Task status: {}", status);
+
+            if ("SUCCEEDED".equals(status)) {
+                log.info("Task SUCCEEDED {}", statusResponse);
+                return statusResponse;
+            } else if ("FAILED".equals(status)) {
+                throw new IOException("Task failed: " + statusResponse);
+            }
+
+            Thread.sleep(POLL_INTERVAL);
+        }
+
+        throw new IOException("Task timeout after " + MAX_RETRIES * 10 + " seconds");
+    }
+
+    private String queryTaskStatus(String taskId) throws IOException {
+        String url = "https://dashscope.aliyuncs.com/api/v1/tasks/" + taskId;
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Authorization", "Bearer " + apiKey)
+                .get()
+                .build();
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                String errorBody = response.body() != null ? response.body().string() : "No response body";
+                throw new IOException("Task query failed: " + response.code() + " - " + errorBody);
+            }
+            return response.body().string();
+        }
+    }
+
+    private String parseTaskId(String response) throws IOException {
+        JsonNode jsonNode = objectMapper.readTree(response);
+        JsonNode output = jsonNode.get("output");
+        return output.get("task_id").asText();
+    }
+
+    private String parseTaskStatus(String response) throws IOException {
+        JsonNode jsonNode = objectMapper.readTree(response);
+        JsonNode output = jsonNode.get("output");
+        return output.get("task_status").asText();
+    }
+
+
+
 }

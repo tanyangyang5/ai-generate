@@ -19,8 +19,9 @@ public class MultiImageVideoSynthesisController {
     }
 
     @PostMapping("/synthesize")
-    public ResponseEntity<String> synthesizeVideo(@RequestBody MultiImageVideoSynthesisRequest request) throws IOException {
-        String response = multiImageVideoSynthesisService.submitTask(request);
+    public ResponseEntity<String> synthesizeVideo(@RequestBody MultiImageVideoSynthesisRequest request) throws IOException, InterruptedException {
+        //String response = multiImageVideoSynthesisService.submitTask(request);
+        String response = multiImageVideoSynthesisService.generateVideoWithWait(request);
         return ResponseEntity.ok(response);
     }
 }
