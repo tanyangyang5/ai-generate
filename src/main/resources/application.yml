@@ -11,3 +11,9 @@ aliyun:
     image-video-url: https://dashscope.aliyuncs.com/api/v1/services/aigc/image2video/video-synthesis
 
 region: china
+
+ai:
+  api:
+    url: https://api.ezai88.com/v1/chat/completions
+    key: "sk-2rX8hBPlNZsIBlTHvh06fO65MB1F11bWv96LKahnaLj8E7ev"   # ← 替换为你的实际 API Key
+    model: "gpt-5.2"
