@@ -12,16 +12,16 @@ import java.io.IOException;
 @RequestMapping("/multiImage/Video")
 public class MultiImageVideoSynthesisController {
 
-    private final MultiImageVideoSynthesisService multiImageVideoSynthesisService;
-
-    public MultiImageVideoSynthesisController(MultiImageVideoSynthesisService multiImageVideoSynthesisService) {
-        this.multiImageVideoSynthesisService = multiImageVideoSynthesisService;
-    }
-
-    @PostMapping("/synthesize")
-    public ResponseEntity<String> synthesizeVideo(@RequestBody MultiImageVideoSynthesisRequest request) throws IOException, InterruptedException {
-        //String response = multiImageVideoSynthesisService.submitTask(request);
-        String response = multiImageVideoSynthesisService.generateVideoWithWait(request);
-        return ResponseEntity.ok(response);
-    }
+//    private final MultiImageVideoSynthesisService multiImageVideoSynthesisService;
+//
+//    public MultiImageVideoSynthesisController(MultiImageVideoSynthesisService multiImageVideoSynthesisService) {
+//        this.multiImageVideoSynthesisService = multiImageVideoSynthesisService;
+//    }
+//
+//    @PostMapping("/synthesize")
+//    public ResponseEntity<String> synthesizeVideo(@RequestBody MultiImageVideoSynthesisRequest request) throws IOException, InterruptedException {
+//        //String response = multiImageVideoSynthesisService.submitTask(request);
+//        String response = multiImageVideoSynthesisService.generateVideoWithWait(request);
+//        return ResponseEntity.ok(response);
+//    }
 }

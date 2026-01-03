@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/image")
-@Tag(name = "图片生成", description = "AI 图片生成接口")
+//@Tag(name = "图片生成", description = "AI 图片生成接口")
 public class ImageGenerationController {
 
     private final ImageGenerationService imageService;
@@ -20,21 +20,21 @@ public class ImageGenerationController {
         this.imageService = imageService;
     }
 
-    @PostMapping("/generate")
-    @Operation(summary = "提交图片生成任务")
-    public ResponseEntity<String> generateImage(@RequestBody ImageGenerationRequest request) {
-        try {
-            String imageUrl = imageService.generateImage(request);
-            return ResponseEntity.ok(imageUrl);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("生成失败: " + e.getMessage());
-        }
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "Image Generation API is working!";
-    }
+//    @PostMapping("/generate")
+//    @Operation(summary = "提交图片生成任务")
+//    public ResponseEntity<String> generateImage(@RequestBody ImageGenerationRequest request) {
+//        try {
+//            String imageUrl = imageService.generateImage(request);
+//            return ResponseEntity.ok(imageUrl);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body("生成失败: " + e.getMessage());
+//        }
+//    }
+//
+//    @GetMapping("/test")
+//    public String test() {
+//        return "Image Generation API is working!";
+//    }
 
 
 }

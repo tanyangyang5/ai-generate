@@ -1,6 +1,13 @@
 spring:
   application:
     name: ai-generate
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 aliyun:
   apiKey: sk-f1b7304ab25248ed937df6c2a64c857d
@@ -15,5 +22,14 @@ region: china
 ai:
   api:
     url: https://api.ezai88.com/v1/chat/completions
-    key: "sk-2rX8hBPlNZsIBlTHvh06fO65MB1F11bWv96LKahnaLj8E7ev"   # ← 替换为你的实际 API Key
+    key: "sk-2rX8hBPlNZsIBlTHvh06fO65MB1F11bWv96LKahnaLj8E7ev"   # ← 替换为你的实际 API Key gpt
+#    key: "vHTLcWwdZGi9poKF9688Db08DeC74036937c96C42668030d" # gemini key
     model: "gpt-5.2"
+
+ezlinkai:
+  api:
+    key: "vHTLcWwdZGi9poKF9688Db08DeC74036937c96C42668030d"
+    geminiImageUrl: https://api.ezlinkai.com/v1beta/models/gemini-3-pro-image-preview:generateContent
+    soraVideoUrl: https://api.ezlinkai.com/v1/videos
+    commonVideoUrl: https://api.ezlinkai.com/v1/video/generations
+

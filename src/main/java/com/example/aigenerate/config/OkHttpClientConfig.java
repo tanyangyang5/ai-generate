@@ -12,9 +12,9 @@ public class OkHttpClientConfig {
     @Bean
     public OkHttpClient okHttpClient() {
         return new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(300, TimeUnit.SECONDS)
+                .writeTimeout(300, TimeUnit.SECONDS)
                 .connectionPool(new ConnectionPool(20, 5, TimeUnit.MINUTES)) // 最大20个连接，空闲5分钟回收
                 .retryOnConnectionFailure(true)
                 .build();
